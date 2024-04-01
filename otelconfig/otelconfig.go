@@ -11,14 +11,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/honeycombio/otel-config-go/otelconfig/pipelines"
+	"github.com/pandada8/otel-config-go/otelconfig/pipelines"
 	"github.com/sethvargo/go-envconfig"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.21.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.24.0"
 )
 
 var (

@@ -1,5 +1,10 @@
 # otel-config-go changelog
 
+## v1.24.0 (2024-04-01)
+
+- forked from github.com/honeycombio/otel-config-go
+- align config-go version with upstream otel
+
 ## v1.14.0 (2024-02-06)
 
 ### Enhancements

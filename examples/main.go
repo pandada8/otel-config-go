@@ -8,7 +8,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/sdk/resource"
 
-	"github.com/honeycombio/otel-config-go/otelconfig"
+	"github.com/pandada8/otel-config-go/otelconfig"
 )
 
 func main() {
