@@ -15,6 +15,7 @@ import (
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
+	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/trace"
 )
@@ -53,7 +54,7 @@ func NewTracePipeline(c PipelineConfig) (func() error, error) {
 }
 
 //revive:disable:flag-parameter bools are fine for an internal function
-func newTraceExporter(protocol Protocol, endpoint string, insecure bool, headers map[string]string) (*otlptrace.Exporter, error) {
+func newTraceExporter(protocol Protocol, endpoint string, insecure bool, headers map[string]string) (trace.SpanExporter, error) {
 	switch protocol {
 	case ProtocolGRPC:
 		return newGRPCTraceExporter(endpoint, insecure, headers)
@@ -61,6 +62,8 @@ func newTraceExporter(protocol Protocol, endpoint string, insecure bool, headers
 		return newHTTPTraceExporter(endpoint, insecure, headers)
 	case ProtocolHTTPJSON:
 		return nil, errors.New("http/json is currently unsupported")
+	case ProtocolSTDOUT:
+		return stdouttrace.New()
 	default:
 		return nil, errors.New("'" + string(protocol) + "' is not a supported protocol")
 	}

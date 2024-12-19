@@ -15,6 +15,7 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc"
 	"go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp"
+	"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric"
 	"go.opentelemetry.io/otel/sdk/metric"
 )
 
@@ -65,6 +66,8 @@ func newMetricsExporter(protocol Protocol, endpoint string, insecure bool, heade
 		return newHTTPMetricsExporter(endpoint, insecure, headers)
 	case ProtocolHTTPJSON:
 		return nil, errors.New("http/json is currently unsupported")
+	case ProtocolSTDOUT:
+		return stdoutmetric.New()
 	default:
 		return nil, errors.New("'" + string(protocol) + "' is not a supported protocol")
 	}

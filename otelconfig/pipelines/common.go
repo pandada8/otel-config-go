@@ -13,6 +13,7 @@ const (
 	ProtocolGRPC         Protocol = "grpc"
 	ProtocolHTTPProtobuf Protocol = "http/protobuf"
 	ProtocolHTTPJSON     Protocol = "http/json"
+	ProtocolSTDOUT       Protocol = "stdout"
 )
 
 // PipelineConfig contains config info for a Pipeline.
